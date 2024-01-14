@@ -1,6 +1,6 @@
 <?php
 require __DIR__ . '/controller.php';
-require __DIR__ . '/../services/articleservice.php';
+require __DIR__ . '/../services/productservice.php';
 
 class ArticleController extends Controller {
 
