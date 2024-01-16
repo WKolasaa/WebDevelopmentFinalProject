@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '/../../services/productservice.php';
+require __DIR__ . '/../../services/productService.php';
 
 class ArticleController
 {

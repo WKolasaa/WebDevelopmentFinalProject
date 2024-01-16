@@ -19,7 +19,7 @@ include __DIR__ . '/../shared/header.php';
                 </div>
                 <div class="card-body">
                     <!-- Login Form -->
-                    <form action="/app/controllers/logincontroller.php" method="POST">
+                    <form action="login/login" method="POST">
                         <div class="form-group">
                             <label for="username">Username or Email:</label>
                             <input type="text" class="form-control" id="username" name="username" required>

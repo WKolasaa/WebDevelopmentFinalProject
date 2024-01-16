@@ -1,6 +1,6 @@
 <?php
 
-class singletonPattern
+class Singleton
 {
     private static $instance;
     private $loggedUser;
@@ -11,7 +11,7 @@ class singletonPattern
 
     public static function getInstance() {
         if (self::$instance == null) {
-            self::$instance = new singletonPattern();
+            self::$instance = new Singleton();
         }
         return self::$instance;
     }
@@ -29,6 +29,11 @@ class singletonPattern
     }
 
     public function isLoggedIn() {
-        return $this->loggedUser != null;
+        if($this->loggedUser == null){
+            return false;
+        }
+        else{
+            return true;
+        }
     }
 }

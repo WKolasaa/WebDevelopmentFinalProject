@@ -37,7 +37,7 @@ class user
     {
         return $this->userID;
     }
-    public function getUserName(): string
+    public function getUserName()
     {
         return $this->userName;
     }

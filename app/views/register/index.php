@@ -19,7 +19,7 @@ include __DIR__ . '/../shared/header.php';
                 </div>
                 <div class="card-body">
                     <!-- Registration Form -->
-                    <form action="app/controllers/registercontroller" method="post" onsubmit="return validateForm()">
+                    <form method="post" action="register/createAnAccount">
                         <div class="form-group">
                             <label for="userName">Username:</label>
                             <input type="text" class="form-control" id="userName" name="userName" required>

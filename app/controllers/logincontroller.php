@@ -1,15 +1,18 @@
 <?php
 require __DIR__ . '/controller.php';
-class logincontroller extends Controller
+require __DIR__ . '/../services/userService.php';
+require_once __DIR__ . '/../views/shared/singletonPattern.php';
+
+class LoginController extends Controller
 {
     public function index() {
-        require __DIR__ . '/../views/login/index.php';
+        require_once __DIR__ . '/../views/login/index.php';
     }
 
     public function login(){
         $loginInput = $_POST['username'];
         $password = $_POST['password'];
-        $userService = new \app\services\userservice();
+        $userService = new UserService();
         if(filter_var($loginInput, FILTER_VALIDATE_EMAIL)){
             $user = $userService->loginByEmail($loginInput, $password);
         }else{
@@ -17,12 +20,10 @@ class logincontroller extends Controller
         }
 
         if($user){
-            $singleton = \app\services\Singleton::getInstance();
-            $singleton -> setLoggedUser($user);
-            $_SESSION['user'] = $user;
+            Singleton::getInstance()->setLoggedUser($user);
             header('Location: /');
         }else{
-            header('Location: /login');
+            echo "Wrong username or password";
         }
     }
 }

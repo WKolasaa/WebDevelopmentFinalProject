@@ -1,10 +1,16 @@
 <?php
+include __DIR__ . '/../repositories/userRepository.php';
 
-class userService
+class UserService
 {
+    private $userRepository;
+    public function __construct()
+    {
+    }
+
     public function loginByUserName($userName, $password){
-        $userRepository = new \App\Repositories\UserRepository();
-        $user = $userRepository->findUserByUsername($userName);
+        $userRepository = new UserRepository();
+        $user = $userRepository->getUserByUserName($userName);
         if ($user && password_verify($password, $user['password'])) {
             return $user;
         }
@@ -12,17 +18,22 @@ class userService
     }
 
     public function loginByEmail($email, $password){
-        $userRepository = new \App\Repositories\UserRepository();
-        $user = $userRepository->findUserByEmail($email);
-        if ($user && password_verify($password, $user['password'])) {
+        $userRepository = new UserRepository();
+        $user = $userRepository->getUserByEmail($email);
+        if ($user && password_verify($password, $user->getPassword())) {
             return $user;
         }
         return null;
     }
 
-    public function register($user){
-        $userRepository = new \App\Repositories\UserRepository();
-        $user = $userRepository->createUser($user);
+    public function register($userName, $firstName, $lastName, $email, $password, $phone, $address, $dateOfBirth, $role){
+        $userRepository = new UserRepository();
+        return $userRepository->createUser($userName, $firstName, $lastName, $email, $password, $phone, $address, $dateOfBirth, $role);
+    }
+
+    public function getBiggestId(){
+        $userRepository = new UserRepository();
+        $user = $userRepository->getBiggestId();
         return $user;
     }
 }

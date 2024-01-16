@@ -22,6 +22,18 @@ class SwitchRouter {
                 $controller->index();
                 break;
 
+            case 'product':
+                require __DIR__ . '/controllers/productcontroller.php';
+                $controller = new ProductController();
+                $controller->index();
+                break;
+
+            case 'logout':
+                require __DIR__ . '/controllers/logoutcontroller.php';
+                $controller = new LogoutController();
+                $controller->index();
+                break;
+
             default:
                 http_response_code(404);
                 break;
