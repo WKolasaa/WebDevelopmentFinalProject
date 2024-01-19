@@ -49,6 +49,18 @@ include __DIR__ . '/../shared/header.php';
                             <input type="text" class="form-control" id="address" name="address" required>
                         </div>
                         <div class="form-group">
+                            <label for="address">Address 2 (optional):</label>
+                            <input type="text" class="form-control" id="address2" name="address2" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Country:</label>
+                            <input type="text" class="form-control" id="country" name="country" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Zip code:</label>
+                            <input type="text" class="form-control" id="zip" name="zip" required>
+                        </div>
+                        <div class="form-group">
                             <label for="dateOfBirth">Date of Birth:</label>
                             <input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth" required>
                         </div>

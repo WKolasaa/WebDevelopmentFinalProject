@@ -1,3 +1,7 @@
+<?php
+// session_start();
+?>
+
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">Shop</a>
@@ -18,6 +22,17 @@
 
             <!-- Content to be conditionally rendered -->
             <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown" id="crudDropdownContainer" style="display: none;">
+                    <a class="nav-link dropdown-toggle" href="#" id="crudDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        CRUD
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="crudDropdown">
+                        <a class="dropdown-item" href="/add">Add product</a>
+                        <a class="dropdown-item" href="/remove">Remove product</a>
+                        <a class="dropdown-item" href="#">Update product</a>
+                    </div>
+                </li>
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Account
@@ -33,7 +48,7 @@
                             <li class="nav-item"><span class="nav-link">Welcome back!</span></li>
                             <li class="nav-item"><a class="nav-link" href="#">Account setting</a></li>
                             <li class="nav-item"><a class="nav-link" href="#">Your orders</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#">Log out</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/logout">Log out</a></li>
                         </ul>
                     </div>
                 </li>
@@ -48,24 +63,24 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.5.3/dist/js/bootstrap.min.js"></script>
 
 <script>
-    fetch('/connectionSPToJS.php')
-        .then(response => response.json())
-        .then(data => {
-            const isLoggedIn = data.isLoggedIn;
+    const isLoggedIn = <?php echo isset($_SESSION['user']); ?>;
+    const userRole = <?php echo isset($_SESSION['user']) ? json_encode($_SESSION['user']['role']) : 'null'; ?>;
 
-            // Conditional rendering
-            const loggedOutContent = document.getElementById('loggedOutContent');
-            const loggedInContent = document.getElementById('loggedInContent');
+    // Conditional rendering
+    const loggedOutContent = document.getElementById('loggedOutContent');
+    const loggedInContent = document.getElementById('loggedInContent');
+    const crudDropdownContainer = document.getElementById('crudDropdownContainer');
 
-            if (isLoggedIn) {
-                loggedOutContent.style.display = 'none'; // Hide the logged-out content
-                loggedInContent.style.display = 'block'; // Show the logged-in content
-            } else {
-                loggedOutContent.style.display = 'block'; // Show the logged-out content
-                loggedInContent.style.display = 'none'; // Hide the logged-in content
-            }
-        })
-        .catch(error => console.error('Error fetching login status:', error));
+    if (isLoggedIn) {
+        loggedOutContent.style.display = 'none'; // Hide the logged-out content
+        loggedInContent.style.display = 'block'; // Show the logged-in content
+
+        // Check if the user has admin role
+        if (userRole === 'admin') {
+            crudDropdownContainer.style.display = 'block'; // Show the CRUD dropdown
+        }
+    } else {
+        loggedOutContent.style.display = 'block'; // Show the logged-out content
+        loggedInContent.style.display = 'none'; // Hide the logged-in content
+    }
 </script>
-
-

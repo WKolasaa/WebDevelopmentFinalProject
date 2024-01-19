@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/singletonPattern.php';
+require __DIR__ . '/singletonPattern.php';
 
 $singleton = Singleton::getInstance();
 $loggedInStatus = $singleton->isLoggedIn();

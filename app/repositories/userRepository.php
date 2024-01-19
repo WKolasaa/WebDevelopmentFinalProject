@@ -1,4 +1,7 @@
 <?php
+
+use App\Models\user;
+
 require __DIR__ . '/repository.php';
 require __DIR__ . '/../models/user.php';
 
@@ -33,19 +36,23 @@ class UserRepository extends Repository
         }
     }
 
-    function createUser($userName, $firstName, $lastName, $email, $password, $phone, $address, $dateOfBirth, $role) {
+    function createUser($user) {
         try {
-            $stmt = $this->connection->prepare("INSERT INTO users (userName, firstName, lastName, email, password, phone, address, dateOfBirth, role) VALUES (:userName, :firstName, :lastName, :email, :password, :phone, :address, :dateOfBirth, :role)");
+            $stmt = $this->connection->prepare("INSERT INTO users (userName, firstName, lastName, email, password, phone, address, address2, country, zip, dateOfBirth, role) VALUES (:userName, :firstName, :lastName, :email, :password, :phone, :address, :address2, :country, :zip, :dateOfBirth, :role)");
 
-            $stmt->bindValue(':userName', $userName);
-            $stmt->bindValue(':firstName', $firstName);
-            $stmt->bindValue(':lastName', $lastName);
-            $stmt->bindValue(':email', $email);
-            $stmt->bindValue(':password', $password);
-            $stmt->bindValue(':phone', $phone);
-            $stmt->bindValue(':address', $address);
-            $stmt->bindValue(':dateOfBirth', $dateOfBirth);
-            $stmt->bindValue(':role', $role);
+            $stmt->bindValue(':userName', $user->userName);
+            $stmt->bindValue(':firstName', $user->firstName);
+            $stmt->bindValue(':lastName', $user->lastName);
+            $stmt->bindValue(':email', $user->email);
+            $stmt->bindValue(':password', $user->password);
+            $stmt->bindValue(':phone', $user->phone);
+            $stmt->bindValue(':address', $user->address);
+            $stmt->bindValue(':address2', $user->address2);
+            $stmt->bindValue(':country', $user->country);
+            $stmt->bindValue(':zip', $user->zip);
+            $dateString = $user->dateOfBirth->format('Y-m-d');
+            $stmt->bindValue(':dateOfBirth', $dateString);
+            $stmt->bindValue(':role', $user->role);
 
             return $stmt->execute();
         } catch (PDOException $e) {

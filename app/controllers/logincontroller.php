@@ -1,7 +1,7 @@
 <?php
 require __DIR__ . '/controller.php';
 require __DIR__ . '/../services/userService.php';
-require_once __DIR__ . '/../views/shared/singletonPattern.php';
+//require_once __DIR__ . '/../models/user.php';
 
 class LoginController extends Controller
 {
@@ -20,7 +20,8 @@ class LoginController extends Controller
         }
 
         if($user){
-            Singleton::getInstance()->setLoggedUser($user);
+            session_start();
+            $_SESSION['user'] = $user;
             header('Location: /');
         }else{
             echo "Wrong username or password";

@@ -14,4 +14,16 @@ class productService
         $products = $productRepository->getAll();
         return $products;
     }
+
+    public function addProduct($product){
+        $productRepository = new ProductRepository();
+        $result = $productRepository->addProduct($product);
+        return $result;
+    }
+
+    public function removeProduct($product){
+        $productRepository = new ProductRepository();
+        $result = $productRepository->removeProduct($product);
+        return $result;
+    }
 }

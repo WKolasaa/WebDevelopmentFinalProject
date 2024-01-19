@@ -26,9 +26,9 @@ class UserService
         return null;
     }
 
-    public function register($userName, $firstName, $lastName, $email, $password, $phone, $address, $dateOfBirth, $role){
+    public function register($user){
         $userRepository = new UserRepository();
-        return $userRepository->createUser($userName, $firstName, $lastName, $email, $password, $phone, $address, $dateOfBirth, $role);
+        return $userRepository->createUser($user);
     }
 
     public function getBiggestId(){

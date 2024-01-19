@@ -3,7 +3,7 @@ namespace App\Models;
 
 use DateTime;
 
-class user
+class User
 {
     const ROLE_ADMIN = 'admin';
     const ROLE_USER = 'user';
@@ -16,11 +16,15 @@ class user
     private  string $password;
     private  string $phone;
     private  string $address;
-    private  DateTime $dateOfBirth;
+    private string $address2;
+    private string $country;
+    private string $zip;
+    private DateTime $dateOfBirth;
     private string $role;
 
 
-    public function __construct(int $userID, string $userName, string $firstName, string $lastName, string $email, string $password, string $phone, string $address, DateTime $dateOfBirth, string $role)
+
+    public function __construct(int $userID, string $userName, string $firstName, string $lastName, string $email, string $password, string $phone, string $address, string $address2, string $country, string $zip, DateTime $dateOfBirth, string $role)
     {
         $this->userID = $userID;
         $this->userName = $userName;
@@ -30,10 +34,14 @@ class user
         $this->password = $password;
         $this->phone = $phone;
         $this->address = $address;
+        $this->address2 = $address2;
+        $this->country = $country;
+        $this->zip = $zip;
         $this->dateOfBirth = $dateOfBirth;
         $this->role = $role;
     }
-    public function getUserID(): int
+
+    public function getUserID()
     {
         return $this->userID;
     }
@@ -76,6 +84,21 @@ class user
     public function getRole(): string
     {
         return $this->role;
+    }
+
+    public function getCountry(): string
+    {
+        return $this->country;
+    }
+
+    public function getZip(): string
+    {
+        return $this->zip;
+    }
+
+    public function getAddress2(): string
+    {
+        return $this->address2;
     }
 
 }

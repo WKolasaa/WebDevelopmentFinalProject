@@ -34,6 +34,24 @@ class SwitchRouter {
                 $controller->index();
                 break;
 
+            case 'order':
+                require __DIR__ . '/controllers/ordercontroller.php';
+                $controller = new OrderController();
+                $controller->index();
+                break;
+
+            case 'add':
+                require __DIR__ . '/controllers/addcontroller.php';
+                $controller = new AddController();
+                $controller->index();
+                break;
+
+            case 'remove':
+                require __DIR__ . '/controllers/removecontroller.php';
+                $controller = new RemoveController();
+                $controller->index();
+                break;
+
             default:
                 http_response_code(404);
                 break;
