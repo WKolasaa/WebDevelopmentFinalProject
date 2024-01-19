@@ -122,7 +122,7 @@ use App\Models\User;
 <div class="container">
     <main>
         <div class="py-5 text-center">
-            <h2>Checkout form <?php echo $user['userName']?></h2>
+            <h2>Checkout form <?php echo $_SESSION['userClass']->getUserName();?></h2>
             <p class="lead">WDqawdwadadawdawdawdadaw</p>
         </div>
 

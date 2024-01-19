@@ -16,7 +16,6 @@ class OrderController extends Controller
             include __DIR__ . '/../views/order/account.php';
         } else {
             $user = $_SESSION['user'];
-            $userName = $user['userName'];
             //var_dump($user);
             include __DIR__ . '/../views/order/index.php';
         }

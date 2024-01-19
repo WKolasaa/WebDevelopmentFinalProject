@@ -35,9 +35,25 @@ class registercontroller  extends Controller
 
         $rows = $service->register($user);
 
+        $userArray = array();
+        $userArray['userID'] = $tmpID;
+        $userArray['userName'] = $_POST['userName'];
+        $userArray['firstName'] = $_POST['firstName'];
+        $userArray['lastName'] = $_POST['lastName'];
+        $userArray['email'] = $_POST['email'];
+        $userArray['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        $userArray['phone'] = $_POST['phone'];
+        $userArray['address'] = $_POST['address'];
+        $userArray['address2'] = $_POST['address2'];
+        $userArray['country'] = $_POST['country'];
+        $userArray['zip'] = $_POST['zip'];
+        $userArray['dateOfBirth'] = new DateTime($_POST['dateOfBirth']);
+        $userArray['role'] = 'user';
+
         if($user){
             session_start();
-            $_SESSION['user'] = $user;
+            $_SESSION['userClass'] = $user;
+            $_SESSION['user'] = $userArray;
             header('Location: /');
         }else{
             header('Location: /register');

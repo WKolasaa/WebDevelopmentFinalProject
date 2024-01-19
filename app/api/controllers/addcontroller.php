@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Product;
+require_once __DIR__ . '/../../models/product.php';
 
 require __DIR__ . '/../../services/productService.php';
 

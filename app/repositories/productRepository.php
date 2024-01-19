@@ -6,10 +6,16 @@ class ProductRepository extends Repository
     function getBiggestId(){
         try {
             $stmt = $this->connection->prepare("SELECT MAX(productID) FROM products");
-            return $stmt->execute();
+            $stmt->execute();
+
+            // Fetch the result
+            $maxId = $stmt->fetchColumn();
+
+            return $maxId !== false ? $maxId : 0; // Return 0 if fetchColumn fails
 
         } catch (PDOException $e) {
             echo $e;
+            return 0; // Return 0 in case of an exception
         }
     }
 
@@ -28,12 +34,13 @@ class ProductRepository extends Repository
 
     function addProduct($product) {
         try {
-            $stmt = $this->connection->prepare("INSERT INTO products (productID, productName, productDescription, productPrice, productImage) VALUES (:productID, :productName, :productDescription, :productPrice, :productImage)");
+            $stmt = $this->connection->prepare("INSERT INTO products (productID, productName, productDescription, productPrice, productQuantity,productImage) VALUES (:productID, :productName, :productDescription, :productPrice, :productQuantity, :productImage)");
 
             $stmt->bindValue(':productID', $product->productID);
             $stmt->bindValue(':productName', $product->productName);
             $stmt->bindValue(':productDescription', $product->productDescription);
             $stmt->bindValue(':productPrice', $product->productPrice);
+            $stmt->bindValue(':productQuantity', $product->productQuantity);
             $stmt->bindValue(':productImage', $product->productImage);
 
             return $stmt->execute();

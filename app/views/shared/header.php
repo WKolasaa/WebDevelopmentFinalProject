@@ -1,5 +1,6 @@
 <?php
-// session_start();
+use App\Models\User;
+//require __DIR__ . '/../../models/User.php';
 ?>
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">

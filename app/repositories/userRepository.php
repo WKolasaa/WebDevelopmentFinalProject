@@ -40,19 +40,19 @@ class UserRepository extends Repository
         try {
             $stmt = $this->connection->prepare("INSERT INTO users (userName, firstName, lastName, email, password, phone, address, address2, country, zip, dateOfBirth, role) VALUES (:userName, :firstName, :lastName, :email, :password, :phone, :address, :address2, :country, :zip, :dateOfBirth, :role)");
 
-            $stmt->bindValue(':userName', $user->userName);
-            $stmt->bindValue(':firstName', $user->firstName);
-            $stmt->bindValue(':lastName', $user->lastName);
-            $stmt->bindValue(':email', $user->email);
-            $stmt->bindValue(':password', $user->password);
-            $stmt->bindValue(':phone', $user->phone);
-            $stmt->bindValue(':address', $user->address);
-            $stmt->bindValue(':address2', $user->address2);
-            $stmt->bindValue(':country', $user->country);
-            $stmt->bindValue(':zip', $user->zip);
-            $dateString = $user->dateOfBirth->format('Y-m-d');
+            $stmt->bindValue(':userName', $user->getUserName());
+            $stmt->bindValue(':firstName', $user->getFirstName());
+            $stmt->bindValue(':lastName', $user->getLastName());
+            $stmt->bindValue(':email', $user->getEmail());
+            $stmt->bindValue(':password', $user->getPassword());
+            $stmt->bindValue(':phone', $user->getPhone());
+            $stmt->bindValue(':address', $user->getAddress());
+            $stmt->bindValue(':address2', $user->getAddress2());
+            $stmt->bindValue(':country', $user->getCountry());
+            $stmt->bindValue(':zip', $user->getZip());
+            $dateString = $user->getDateOfBirth()->format('Y-m-d');
             $stmt->bindValue(':dateOfBirth', $dateString);
-            $stmt->bindValue(':role', $user->role);
+            $stmt->bindValue(':role', $user->getRole());
 
             return $stmt->execute();
         } catch (PDOException $e) {
