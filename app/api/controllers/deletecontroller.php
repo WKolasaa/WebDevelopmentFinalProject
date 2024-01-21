@@ -23,7 +23,7 @@ class DeleteController
             }
 
             try {
-                $result = $this->$productService->removeProduct($productID);
+                $result = $productService->removeProduct($productID);
                 if ($result) {
                     http_response_code(204); // No Content (successful deletion)
                 } else {

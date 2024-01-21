@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const selectedProductID = Array.from(this.querySelectorAll('input[name="selectedProducts[]"]:checked')).map(input => input.value);
         if (selectedProductID.length > 0) {
             if (confirm('Are you sure you want to delete these recipes?')) {
-                removeProduct(selectedProductID);
+                deleteProduct(selectedProductID);
             }
         } else {
             alert('Please select at least one recipe before deleting.');
@@ -19,14 +19,14 @@ document.addEventListener('DOMContentLoaded', function () {
             button.addEventListener('click', function () {
                 const productID = this.dataset.productID;
                 if (confirm('Are you sure you want to delete this recipe?')) {
-                    deleteRecipe(productID);
+                    removeProducts(productID);
                 }
             });
         });
     }
 
-    function deleteRecipe(productID) {
-        fetch(`/api/delete?productID=${productID}`, {
+    function deleteProduct(selectedProductID) {
+        fetch(`/api/delete?productID=${selectedProductID}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
     attachDeleteEventListeners();
 
     // Function to delete multiple recipes
-    function removeProduct(productsID) {
+    function removeProducts(productsID) {
         productsID.forEach(productID => {
             removeProduct(productID);
         });

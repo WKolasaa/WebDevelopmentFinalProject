@@ -1,27 +1,30 @@
 <?php
 include __DIR__ . '/../shared/header.php';
+use App\Models\Product;
 ?>
-
 <head>
-    <meta charset="UTF-8">
-    <title>Register</title>
+    <title>Dashboard-Update</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </head>
 
 <body>
 <main class="container mt-4">
     <header class="text-center mb-5">
-        <h1>Dashboard-Delete</h1>
+        <h1>Dashboard-Update</h1>
     </header>
 
     <section>
-        <h2 class="text-center mb-4"></h2>
+        <h2 class="text-center mb-4">Select a product to edit</h2>
 
-        <!-- Form to select and delete recipes -->
-        <form id="removeProductForm">
+        <form id="selectProductForm">
             <div class="row">
                 <?php foreach ($products as $product): ?>
+                    <?php
+                    $productID = htmlspecialchars($product['productID'] ?? 'undefined');
+                    $productName = htmlspecialchars($product['productName'] ?? '');
+                    $productImage = htmlspecialchars($product['productImage'] ?? '');
+                    ?>
+
                     <div class="col-md-4 mb-4">
                         <div class="card">
                             <img src="<?php echo $product['productImage']; ?>" alt="<?php echo $product['productName']; ?>" class="card-img-top">
@@ -30,20 +33,23 @@ include __DIR__ . '/../shared/header.php';
                                 <p class="card-text"><?php echo $product['productDescription']; ?></p>
                                 <p class="card-text">Price: $<?php echo $product['productPrice']; ?></p>
                                 <p class="card-text">Quantity: <?php echo $product['productQuantity']; ?></p>
-                                <input type='checkbox' class='form-check-input' name='selectedProducts[]' value='$selectedProductID'>
+                                <input type='checkbox' class='form-check-input' name='selectedProduct' value='<?php echo $productID?>'>
                             </div>
                         </div>
                     </div>
                 <?php endforeach; ?>
             </div>
-
-            <button type="submit" class="btn btn-primary">Delete Selected Recipes</button>
+            <button type="button" id="editSelected" class="btn btn-primary">Edit selected product</button>
         </form>
+    </section>
 
+    <section id="editProductSection" style="display: none;">
+        <h2 class="text-center mb-4">Edit product</h2>
+        <form id="editProductForm" enctype="multipart/form-data">
+            <!-- Dynamically populated form fields will go here -->
+        </form>
     </section>
 </main>
 
-
-<script src="removeProduct.js"></script>
+<script src="updateProduct.js"></script>
 </body>
-

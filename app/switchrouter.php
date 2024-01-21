@@ -52,6 +52,12 @@ class SwitchRouter {
                 $controller->index();
                 break;
 
+            case 'update':
+                require __DIR__ . '/controllers/updatecontroller.php';
+                $controller = new UpdateController();
+                $controller->index();
+                break;
+
             default:
                 http_response_code(404);
                 break;

@@ -55,4 +55,29 @@ class Product
     {
         $this->productImage = $productImage;
     }
+
+    public function setProductID(int $productID): void
+    {
+        $this->productID = $productID;
+    }
+
+    public function setProductName(string $productName): void
+    {
+        $this->productName = $productName;
+    }
+
+    public function setProductDescription(string $productDescription): void
+    {
+        $this->productDescription = $productDescription;
+    }
+
+    public function setProductPrice(float $productPrice): void
+    {
+        $this->productPrice = $productPrice;
+    }
+
+    public function setProductQuantity(int $productQuantity): void
+    {
+        $this->productQuantity = $productQuantity;
+    }
 }

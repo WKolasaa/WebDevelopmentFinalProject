@@ -21,9 +21,21 @@ class productService
         return $result;
     }
 
-    public function removeProduct($product){
+    public function removeProduct($productID){
         $productRepository = new ProductRepository();
-        $result = $productRepository->removeProduct($product);
+        $result = $productRepository->removeProduct($productID);
         return $result;
+    }
+
+    public function editProduct($product){
+        $productRepository = new ProductRepository();
+        $result = $productRepository->updateProduct($product);
+        return $result;
+    }
+
+    public function getProductByID($productID){
+        $productRepository = new ProductRepository();
+        $product = $productRepository->updateProduct($productID);
+        return $product;
     }
 }

@@ -30,7 +30,7 @@ use App\Models\User;
                     <div class="dropdown-menu" aria-labelledby="crudDropdown">
                         <a class="dropdown-item" href="/add">Add product</a>
                         <a class="dropdown-item" href="/remove">Remove product</a>
-                        <a class="dropdown-item" href="#">Update product</a>
+                        <a class="dropdown-item" href="/update">Update product</a>
                     </div>
                 </li>
 
