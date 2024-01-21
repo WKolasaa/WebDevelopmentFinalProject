@@ -20,19 +20,20 @@ use App\Models\Product;
             <div class="row">
                 <?php foreach ($products as $product): ?>
                     <?php
-                    $productID = htmlspecialchars($product['productID'] ?? 'undefined');
-                    $productName = htmlspecialchars($product['productName'] ?? '');
-                    $productImage = htmlspecialchars($product['productImage'] ?? '');
+                    $productID = htmlspecialchars($product->getProductID() ?? 'undefined');
+                    $productName = htmlspecialchars($product->getProductName() ?? '');
+                    $productImage = htmlspecialchars($product->getProductImage() ?? '');
+                    //var_dump($product);
                     ?>
 
                     <div class="col-md-4 mb-4">
                         <div class="card">
-                            <img src="<?php echo $product['productImage']; ?>" alt="<?php echo $product['productName']; ?>" class="card-img-top">
+                            <img src="<?php echo $product->getProductImage(); ?>" alt="<?php echo $product->getProductName(); ?>" class="card-img-top">
                             <div class="card-body">
-                                <h5 class="card-title"><?php echo $product['productName']; ?></h5>
-                                <p class="card-text"><?php echo $product['productDescription']; ?></p>
-                                <p class="card-text">Price: $<?php echo $product['productPrice']; ?></p>
-                                <p class="card-text">Quantity: <?php echo $product['productQuantity']; ?></p>
+                                <h5 class="card-title"><?php echo $product->getProductName(); ?></h5>
+                                <p class="card-text"><?php echo $product->getProductDescription(); ?></p>
+                                <p class="card-text">Price: $<?php echo $product->getProductPrice(); ?></p>
+                                <p class="card-text">Quantity: <?php echo $product->getProductQuantity(); ?></p>
                                 <input type='checkbox' class='form-check-input' name='selectedProduct' value='<?php echo $productID?>'>
                             </div>
                         </div>

@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\Product;
-require_once __DIR__ . '/../../models/product.php';
+//require_once __DIR__ . '/../../models/product.php';
 
 require __DIR__ . '/../../services/productService.php';
 
@@ -20,15 +20,22 @@ class AddController
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             try {
                 $newService = new ProductService();
+                $title = htmlspecialchars($_POST['title']);
+                $description = htmlspecialchars($_POST['description']);
+                $price = htmlspecialchars($_POST['price']);
+                $quantity = htmlspecialchars($_POST['quantity']);
+
                 $product = new Product(
                     $newService->getBiggestId() + 1,
-                    $_POST['title'],
-                    $_POST['description'],
-                    $_POST['price'],
-                    $_POST['quantity'],
+                    $title,
+                    $description,
+                    $price,
+                    $quantity,
                     ''
                 );
-                var_dump($product);
+
+
+                //var_dump($product);
                 // Handle the image upload
                 if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
                     $imageFileType = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));

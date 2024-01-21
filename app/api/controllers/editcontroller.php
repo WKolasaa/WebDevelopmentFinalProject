@@ -16,11 +16,11 @@ class EditController
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
             try {
                 // Retrieve data from the request
-                $productID = $_POST['productID'] ?? null;
-                $productName = $_POST['productName'] ?? '';
-                $productDescription = $_POST['productDescription'] ?? '';
-                $productPrice = $_POST['productPrice'] ?? '';
-                $productQuantity = $_POST['productQuantity'] ?? '';
+                $productID = htmlspecialchars($_POST['productID']);
+                $productName = htmlspecialchars($_POST['productName']) ?? '';
+                $productDescription = htmlspecialchars($_POST['productDescription']) ?? '';
+                $productPrice = htmlspecialchars($_POST['productPrice']) ?? '';
+                $productQuantity = htmlspecialchars($_POST['productQuantity']) ?? '';
 
                 if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
                     $imageFileType = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));

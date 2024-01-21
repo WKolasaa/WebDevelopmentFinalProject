@@ -29,7 +29,7 @@ include __DIR__ . '/../shared/header.php';
                             <input type="password" class="form-control" id="password" name="password" required>
                         </div>
                         <div id="passwordHelpBlock" class="form-text">
-                            Forgot your password? <a href="forgot-password.php">Click here</a>
+                            You dont have an account? <a href="/register">Click here</a>
                         </div>
                         <p></p>
                         <button type="submit" class="btn btn-primary">Login</button>

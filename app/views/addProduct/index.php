@@ -37,6 +37,8 @@ require __DIR__ . '/../shared/header.php';
         <button type="button" class="btn btn-primary" onclick="addProduct()">Add product</button>
     </form>
 </div>
+
 <script src="addProduct.js"></script>
+
 </body>
 </html>

@@ -4,7 +4,6 @@ use App\Models\user;
 
 require __DIR__ . '/controller.php';
 require __DIR__ . '/../services/userService.php';
-require_once __DIR__ . '/../views/shared/singletonPattern.php';
 
 class registercontroller  extends Controller
 {

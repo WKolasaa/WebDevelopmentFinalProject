@@ -1,6 +1,6 @@
 <?php
 class SwitchRouter {
-    public function route($uri) {    
+    public function route($uri) {
         // using a simple switch statement to route URL's to controller methods
         switch($uri) {
 
@@ -37,7 +37,20 @@ class SwitchRouter {
             case 'order':
                 require __DIR__ . '/controllers/ordercontroller.php';
                 $controller = new OrderController();
-                $controller->index();
+
+                // Check if there is a specific action for the order controller
+                $orderAction = $_GET['action'] ?? null;
+
+                switch ($orderAction) {
+                    case 'createOrder':
+                        $controller->createOrder();
+                        break;
+
+                    default:
+                        // If no specific action, default to the index method
+                        $controller->index();
+                        break;
+                }
                 break;
 
             case 'add':
@@ -55,6 +68,12 @@ class SwitchRouter {
             case 'update':
                 require __DIR__ . '/controllers/updatecontroller.php';
                 $controller = new UpdateController();
+                $controller->index();
+                break;
+
+            case 'thanks':
+                require __DIR__ . '/controllers/thankscontroller.php';
+                $controller = new ThanksController();
                 $controller->index();
                 break;
 

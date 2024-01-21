@@ -9,15 +9,13 @@ require_once __DIR__ . '/../shared/header.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Cards</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="../../public/basketLogic.js" ></script>
-
 </head>
 <body>
 <!-- Custom JavaScript for Basket Logic -->
 
 <header class="text-center mb-5">
     <h1>Welcome to our shop!</h1>
-    <p class="lead">fweionfuaibnfuiwabfndauiwfhbawiyfbawyifgawifaw</p>
+    <p class="lead">Check out our products!</p>
 </header>
 
 <div class="container">
@@ -26,13 +24,13 @@ require_once __DIR__ . '/../shared/header.php';
         <?php foreach ($products as $product): ?>
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <img src="<?php echo $product['productImage']; ?>" alt="<?php echo $product['productName']; ?>" class="card-img-top">
+                    <img src="<?php echo $product->getProductImage(); ?>" alt="<?php echo $product->getProductName(); ?>" class="card-img-top">
                     <div class="card-body">
-                        <h5 class="card-title"><?php echo $product['productName']; ?></h5>
-                        <p class="card-text"><?php echo $product['productDescription']; ?></p>
-                        <p class="card-text">Price: $<?php echo $product['productPrice']; ?></p>
-                        <p class="card-text">Quantity: <?php echo $product['productQuantity']; ?></p>
-                        <button type="button" class="btn btn-primary" onclick="addToBasket('<?php echo $product['productName']; ?>', '<?php echo $product['productPrice']; ?>')">Add to Cart</button>
+                        <h5 class="card-title"><?php echo $product->getProductName(); ?></h5>
+                        <p class="card-text"><?php echo $product->getProductDescription(); ?></p>
+                        <p class="card-text">Price: €<?php echo $product->getProductPrice(); ?></p>
+                        <p class="card-text">Quantity: <?php echo $product->getProductQuantity(); ?></p>
+                        <button type="button" class="btn btn-primary" onclick="addToBasket('<?php echo $product->getProductName(); ?>', '<?php echo $product->getProductPrice(); ?>')">Add to Cart</button>
                     </div>
                 </div>
             </div>
