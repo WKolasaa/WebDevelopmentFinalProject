@@ -1,6 +1,7 @@
 <?php
 use App\Models\User;
 //require __DIR__ . '/../../models/user.php';
+$basketItems = $_SESSION['basketItems'];
 ?>
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
@@ -123,7 +124,7 @@ use App\Models\User;
     <main>
         <div class="py-5 text-center">
             <h2>Checkout form <?php echo $_SESSION['userClass']->getUserName();?></h2>
-            <p class="lead">WDqawdwadadawdawdawdadaw</p>
+            <p class="lead">DUPA</p>
         </div>
 
         <div class="row g-5">
@@ -133,27 +134,15 @@ use App\Models\User;
                     <span class="badge bg-primary rounded-pill">3</span>
                 </h4>
                 <ul class="list-group mb-3">
-                    <li class="list-group-item d-flex justify-content-between lh-sm">
-                        <div>
-                            <h6 class="my-0">Product name</h6>
-                            <small class="text-body-secondary">Brief description</small>
-                        </div>
-                        <span class="text-body-secondary">$12</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between lh-sm">
-                        <div>
-                            <h6 class="my-0">Second product</h6>
-                            <small class="text-body-secondary">Brief description</small>
-                        </div>
-                        <span class="text-body-secondary">$8</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between lh-sm">
-                        <div>
-                            <h6 class="my-0">Third item</h6>
-                            <small class="text-body-secondary">Brief description</small>
-                        </div>
-                        <span class="text-body-secondary">$5</span>
-                    </li>
+                    <?php foreach ($basketItems as $item): ?>
+                        <li class="list-group-item d-flex justify-content-between lh-sm">
+                            <div>
+                                <h6 class="my-0"><?php echo $item['productName']; ?></h6>
+                                <small class="text-body-secondary"><?php echo $item['productDescription']; ?></small>
+                            </div>
+                            <span class="text-body-secondary">$<?php echo $item['productPrice']; ?></span>
+                        </li>
+                    <?php endforeach; ?>
                     <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
                         <div class="text-success">
                             <h6 class="my-0">Promo code</h6>
